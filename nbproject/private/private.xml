@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/interfaz/CRUD_Laboratorios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/EstadoDAO.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/admin.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/header.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Edificios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Laboratorios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/edificios.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/LaboratoriosDAO.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/HorarioDAO.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/laboratorios.jsp</file>
+        </group>
+    </open-files>
+</project-private>
