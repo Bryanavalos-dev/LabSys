@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Sistema de control de limpieza</title>
+	<title>Sistema de Control de limpieza.</title>
 	<%@include file="bs.jsp"  %>
 </head>
 <body style="background-image: url('https://lh3.googleusercontent.com/proxy/HXLm0JVtoFN_GzXJxK2Csey41sR-ZfqUxpxlQPuZcJS2QzrdkI6zzS7VzDMzaALSxgzSZ-9mZKi4ZPQPuZYV8Otni0iatO7kmYqg9PNHEL4u72KXTA'); background-size: cover">
@@ -32,6 +32,6 @@
 		</div>
 		<% } %>
 
-	</form>
+	</form> 
 </body>
 </html>
