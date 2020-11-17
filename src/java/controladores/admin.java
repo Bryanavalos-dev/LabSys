@@ -79,6 +79,11 @@ public class admin extends HttpServlet {
                     mostrar = request.getRequestDispatcher("vistas/administrador/laboratorios.jsp");
                     mostrar.forward(request, response);
                  break;
+                 case "editarLaboratorio":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    mostrar = request.getRequestDispatcher("vistas/administrador/editarLaboratorio.jsp");
+                    mostrar.forward(request, response);
+                  break;
                 case "agregarLaboratorios":                    
                     mostrar = request.getRequestDispatcher("vistas/administrador/agregarLaboratorios.jsp");
                     mostrar.forward(request, response);
@@ -218,6 +223,22 @@ public class admin extends HttpServlet {
                     
                     lbd.add(lb);
                     
+                    response.sendRedirect("admin?tipo=laboratorios");
+                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
+                    
+                    //mostrar.forward(request, response);
+                    
+                  break;
+                   case "modificarLaboratorio":
+                     edificio= Integer.parseInt(request.getParameter("txtEdificio"));
+                    lb.setNombre(request.getParameter("txtNombre"));                    
+                    lb.setEdificios(edificio);
+                    lb.setNivel(request.getParameter("txtNivel"));
+                    lb.setAula(request.getParameter("txtAula"));
+                    lb.setDireccion(request.getParameter("txtDireccion"));
+                    lb.setTelefono(request.getParameter("txtTelefono"));
+
+                    lbd.edit(lb);                    
                     response.sendRedirect("admin?tipo=laboratorios");
                     //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
                     

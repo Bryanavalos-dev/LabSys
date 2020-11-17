@@ -37,7 +37,7 @@
                         <td><%= per.getDireccion()%></td>
                         <td><%= per.getTelefono()%></td>
                         <td>
-                            <a href="#" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="admin?tipo=editarLaboratorio" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
                              <a href="#"  class="btn btn-xs btn-danger " onclick=""><i class="fa fa-close"></i></a>
                             <a  style="display:none;" href="#"  class="btn btn-xs btn-danger " >Seguro?</a>
                         </td>
