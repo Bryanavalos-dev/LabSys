@@ -41,7 +41,7 @@
                <input class="form-control" type="text"  name="txtAula" required="" value="<%=lab.getAula()%>"><br> 
                <input class="form-control" type="text"  name="txtDireccion" required="" value="<%=lab.getDireccion()%>"><br> 
                <input class="form-control" type="text"  name="txtTelefono" required="" value="<%=lab.getTelefono()%>"><br> 
-                <input class="form-control" type="text" name="txtId" value="<%= lab.getCodigo()%>"><br>
+                <input class="form-control" type="hidden" name="txtId" value="<%= lab.getCodigo()%>"><br>
             <input class="btn btn-success" type="submit" name="accion" value="actualizarLaboratorio"><br>
         </form>          
         </div>
