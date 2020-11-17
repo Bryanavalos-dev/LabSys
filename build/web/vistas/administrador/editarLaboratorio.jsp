@@ -18,24 +18,30 @@
                 Laboratorios lab=(Laboratorios)daol.list(id);
                                                
                 %>      
-        <h1>Modificar Periodo Del Registro : <%= lab.getCodigo()%></h1>
+        <h1>Modificar Laboratorio Del Registro : <%= lab.getCodigo()%></h1>
         <form action="admin?tipo=modificarLaboratorio" method="post">
             <input class="form-control" type="text" name="txtNombre"required="" value="<%=lab.getNombre()%>"><br>
-            <select id="sltEdificios" class="form-control" style="margin-bottom: 20px; " name="sltEdificio">
-                 <option value='' >Seleccione el edifico</option>
+            <select required="" id="sltEdificios" class="form-control" style="margin-bottom: 20px; " name="sltEdificio">
+                 <option value='' disable>Seleccione el edifico</option>
                 <%  while (iter.hasNext ()){
                         per=iter.next();
-                %>
-                <option value='<%= per.getId() %>'><%= per.getNombre() %></option>
-                 <% }%>//fin del while
+                       if(per.getId()==lab.getEdificios()){
+                       %>
+              
+                       <option value='<%= per.getId() %>' <%= (lab.getEdificios()==per.getId())?" selected ":"" %> ><%= per.getNombre() %></option>
+                 <% }else{%>
+                    <option value='<%= per.getId() %>'  ><%= per.getNombre() %> /// <%= lab.getEdificios() %> <%= per.getId() %> </option>
+                 
+                    <%}}%>//fin del while
                     
                    
                 </select>
-                 <input class="form-control" type="text"   name="txtEdificio" id='txtEdificio' required="" value="<%=lab.getEdificios()%>"><br>
+                
                <input class="form-control" type="text" name="txtNivel" required="" value="<%=lab.getNivel()%>"><br>    
                <input class="form-control" type="text"  name="txtAula" required="" value="<%=lab.getAula()%>"><br> 
                <input class="form-control" type="text"  name="txtDireccion" required="" value="<%=lab.getDireccion()%>"><br> 
                <input class="form-control" type="text"  name="txtTelefono" required="" value="<%=lab.getTelefono()%>"><br> 
+                <input class="form-control" type="text" name="txtId" value="<%= lab.getCodigo()%>"><br>
             <input class="btn btn-success" type="submit" name="accion" value="actualizarLaboratorio"><br>
         </form>          
         </div>
@@ -45,18 +51,3 @@
                     
 
 <%@include file="footer.jsp" %>
-
-<script>
-    $("#sltEdificios").change(function(event) {
-    if($(this)[0].selectedIndex==0)
-      {
-        $(this).prop('required',true);
-        $("#txtFin").val('');
-      }
-      else
-      {
-      	$(this).prop('required',false);
-      	$("#txtEdificio").val($("#sltEdificios option:selected").val());
-      }
-  });
-</script>

@@ -79,6 +79,14 @@ public class admin extends HttpServlet {
                     mostrar = request.getRequestDispatcher("vistas/administrador/laboratorios.jsp");
                     mostrar.forward(request, response);
                  break;
+                  case "eliminarLaboratorio":
+                    request.setAttribute("idper",request.getParameter("id"));
+                   LaboratoriosDAO lba = new LaboratoriosDAO();
+                    int ides=Integer.parseInt(request.getParameter("id"));
+                    lba.eliminar(ides);
+                    
+                     response.sendRedirect("admin?tipo=laboratorios");
+                  break;
                  case "editarLaboratorio":
                     request.setAttribute("idper",request.getParameter("id"));
                     mostrar = request.getRequestDispatcher("vistas/administrador/editarLaboratorio.jsp");
@@ -213,7 +221,7 @@ public class admin extends HttpServlet {
           LaboratoriosDAO lbd = new LaboratoriosDAO();
          switch(accion){
               case "agregarLaboratorio":
-                    edificio= Integer.parseInt(request.getParameter("txtEdificio"));
+                    edificio= Integer.parseInt(request.getParameter("sltEdificio"));
                     lb.setNombre(request.getParameter("txtNombre"));                    
                     lb.setEdificios(edificio);
                     lb.setNivel(request.getParameter("txtNivel"));
@@ -230,7 +238,11 @@ public class admin extends HttpServlet {
                     
                   break;
                    case "modificarLaboratorio":
-                     edificio= Integer.parseInt(request.getParameter("txtEdificio"));
+                    request.setAttribute("idper",request.getParameter("id"));
+                    lb = new Laboratorios();
+                    id=Integer.parseInt(request.getParameter("txtId"));
+                    lb.setCodigo(id);
+                    edificio= Integer.parseInt(request.getParameter("sltEdificio"));
                     lb.setNombre(request.getParameter("txtNombre"));                    
                     lb.setEdificios(edificio);
                     lb.setNivel(request.getParameter("txtNivel"));
@@ -240,9 +252,7 @@ public class admin extends HttpServlet {
 
                     lbd.edit(lb);                    
                     response.sendRedirect("admin?tipo=laboratorios");
-                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
-                    
-                    //mostrar.forward(request, response);
+                   
                     
                   break;
               case "agregarPeriodo":

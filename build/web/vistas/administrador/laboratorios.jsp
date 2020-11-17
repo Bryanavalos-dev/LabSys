@@ -37,9 +37,9 @@
                         <td><%= per.getDireccion()%></td>
                         <td><%= per.getTelefono()%></td>
                         <td>
-                            <a href="admin?tipo=editarLaboratorio" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-                             <a href="#"  class="btn btn-xs btn-danger " onclick=""><i class="fa fa-close"></i></a>
-                            <a  style="display:none;" href="#"  class="btn btn-xs btn-danger " >Seguro?</a>
+                            <a href="admin?tipo=editarLaboratorio&id=<%= per.getCodigo()%>"  class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                             <a href="#"  class="btn btn-xs btn-danger pl-<%= per.getCodigo()%>" onclick="$('.pl-<%= per.getCodigo()%>').toggle()"><i class="fa fa-close"></i></a>
+                            <a  style="display:none;" href="admin?tipo=eliminarLaboratorio&id=<%= per.getCodigo()%>"  class="btn btn-xs btn-danger pl-<%= per.getCodigo()%> " >Seguro?</a>
                         </td>
                     </tr>
                     <%}%>

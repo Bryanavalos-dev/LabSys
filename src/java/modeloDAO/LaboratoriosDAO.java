@@ -52,7 +52,7 @@ public class LaboratoriosDAO implements CRUD_Laboratorios{
     }
      @Override
     public Laboratorios list(int id) {
-        String sql ="select idlaboratorios, l.nombre, e.nombre idedificios, nivel, aula, direccion,telefono from laboratorios l inner join edificios e on l.edificioid = e.idedificios  where idlaboratorios = " + id;
+        String sql ="select idlaboratorios, l.nombre, e.nombre idedificios,edificioid, nivel, aula, direccion,telefono from laboratorios l inner join edificios e on l.edificioid = e.idedificios  where idlaboratorios = " + id;
         try{
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
@@ -61,6 +61,7 @@ public class LaboratoriosDAO implements CRUD_Laboratorios{
                l.setCodigo(rs.getInt("idlaboratorios"));
                l.setNombre(rs.getString("nombre"));
                l.setEdificio(rs.getString("idedificios"));
+               l.setEdificios(rs.getInt("edificioid"));
                l.setNivel(rs.getString("nivel"));
                l.setAula(rs.getString("aula"));
                l.setDireccion(rs.getString("direccion")); 
@@ -91,21 +92,22 @@ public class LaboratoriosDAO implements CRUD_Laboratorios{
 
     @Override
     public boolean edit(Laboratorios per) {
-    String sql ="update laboratorios set nombre='"+per.getNombre()+"',idedificios='"+per.getEdificios()+"',nivel='"+per.getNivel()+"',"
-            + "aula='"+per.getAula()+"',direccion='"+per.getDireccion()+"',telefono='"+per.getTelefono();
+    String sql ="update laboratorios set nombre='"+per.getNombre()+"',edificioid='"+per.getEdificios()+"',nivel='"+per.getNivel()+"',"
+            + "aula='"+per.getAula()+"',direccion='"+per.getDireccion()+"',telefono='"+per.getTelefono()+"' where idlaboratorios="+per.getCodigo();
         try {
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
         }
         catch (Exception e){
+              System.err.println("Error"+e);
                 }
         return false;
     }
 
     @Override
-    public boolean eliminar(int id) {
-           String sql ="delete from laboratorios where idlaboratorios="+id;
+    public boolean eliminar(int ides) {
+           String sql ="delete from laboratorios where idlaboratorios="+ides;
         try {
             con=cn.getConexion();
             ps=con.prepareStatement(sql);

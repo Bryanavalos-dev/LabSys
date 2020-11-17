@@ -16,7 +16,7 @@
         <form action="admin?tipo=agregarLaboratorio" method="post">
             <input class="form-control" type="text" name="txtNombre" placeholder="Ingrese el nombre" required="" value=""><br>
             <select id="sltEdificios" class="form-control" style="margin-bottom: 20px; " name="sltEdificio">
-                 <option value='' >Seleccione el edifico</option>
+                 <option value='' selected disable>Seleccione el edifico</option>
                 <%  while (iter.hasNext ()){
                         per=iter.next();
                 %>
@@ -25,7 +25,7 @@
                     
                    
                 </select>
-                 <input class="form-control" type="text"  placeholder="Edififico Seleccionado" name="txtEdificio" id='txtEdificio' required="" value=""><br>
+                 <input class="form-control" type="text"  placeholder="Edififico Seleccionado" name="txtEdificio" id='txtEdificio'  value=""><br>
                <input class="form-control" type="text" placeholder="Ingrese el nivel" name="txtNivel" required="" value=""><br>    
                <input class="form-control" type="text" placeholder="Ingrese el Aula" name="txtAula" required="" value=""><br> 
                <input class="form-control" type="text" placeholder="Ingrese la direccion" name="txtDireccion" required="" value=""><br> 
@@ -39,18 +39,3 @@
                     
 
 <%@include file="footer.jsp" %>
-
-<script>
-    $("#sltEdificios").change(function(event) {
-    if($(this)[0].selectedIndex==0)
-      {
-        $(this).prop('required',true);
-        $("#txtFin").val('');
-      }
-      else
-      {
-      	$(this).prop('required',false);
-      	$("#txtEdificio").val($("#sltEdificios option:selected").val());
-      }
-  });
-</script>
