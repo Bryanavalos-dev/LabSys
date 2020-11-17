@@ -38,16 +38,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#">SCL - Admin</a>
+                      <a class="navbar-brand" href="admin">SCL - Admin</a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                       <ul class="nav navbar-nav">
-                        <li class="active"><a href="admin">Inicio</a></li>
+                        
                         <li class="active"><a href="admin?tipo=roles">Roles</a></li>
                          <li class="active"><a href="admin?tipo=edificios">Edificios</a></li>
                          <li class="active"><a href="admin?tipo=estados">Estados</a></li>
                           <li class="active"><a href="admin?tipo=periodos">Periodos</a></li>
                           <li class="active"><a href="admin?tipo=laboratorios">Laboratorios</a></li>
+                          <li class="active"><a href="admin?tipo=usuarios">Usuarios</a></li>
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>
                     </div><!--/.nav-collapse -->

@@ -7,6 +7,8 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,11 @@ import modelo.Periodo;
 import modeloDAO.PeriodoDAO;
 import modelo.Laboratorios;
 import modeloDAO.LaboratoriosDAO;
+import modelo.Usuarios;
+import modeloDAO.UsuariosDAO;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
 /**
  *
  * @author gerson
@@ -75,10 +82,26 @@ public class admin extends HttpServlet {
         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
          
          switch(accion){
+              case "usuarios":
+                    mostrar = request.getRequestDispatcher("vistas/administrador/users.jsp");
+                    mostrar.forward(request, response);
+                 break;
+                  case "agregarUsuarios":                    
+                    mostrar = request.getRequestDispatcher("vistas/administrador/agregarUsuarios.jsp");
+                    mostrar.forward(request, response);
+                  break;  
              case "laboratorios":
                     mostrar = request.getRequestDispatcher("vistas/administrador/laboratorios.jsp");
                     mostrar.forward(request, response);
                  break;
+                  case "eliminarUsuario":
+                    request.setAttribute("idper",request.getParameter("id"));
+                   UsuariosDAO usuda = new UsuariosDAO();
+                    int idus=Integer.parseInt(request.getParameter("id"));
+                    usuda.eliminar(idus);
+                    
+                     response.sendRedirect("admin?tipo=usuarios");
+                  break;
                   case "eliminarLaboratorio":
                     request.setAttribute("idper",request.getParameter("id"));
                    LaboratoriosDAO lba = new LaboratoriosDAO();
@@ -210,7 +233,10 @@ public class admin extends HttpServlet {
          Edificios ed = new Edificios();
          EdificiosDAO red = new EdificiosDAO();
           RolesDAO rd = new RolesDAO();
-           int id,edificio;
+           int id,edificio,rol,activo;
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
+            Date  fechaDate = null;
+            
            Estado es = new Estado();
           EstadoDAO eds = new EstadoDAO();
           
@@ -219,7 +245,29 @@ public class admin extends HttpServlet {
           
           Laboratorios lb = new Laboratorios();
           LaboratoriosDAO lbd = new LaboratoriosDAO();
+          
+          Usuarios usu = new Usuarios();
+          UsuariosDAO usud=  new UsuariosDAO();
          switch(accion){
+             case "agregarUsuario":
+                    rol= Integer.parseInt(request.getParameter("sltRol"));
+                  
+                    usu.setNombre(request.getParameter("txtNombre"));
+                    usu.setTelefono(request.getParameter("txtTelefono"));
+                    usu.setCorreo(request.getParameter("txtCorreo"));
+                    usu.setPassword(request.getParameter("txtPassword"));
+                    usu.setNacimiento(request.getParameter("txtNacimiento"));
+                    activo= Integer.parseInt(request.getParameter("txtActivo"));
+                    usu.setIdrol(rol);
+                    usu.setActivo(activo);
+                   usud.add(usu);
+                    
+                    response.sendRedirect("admin?tipo=usuarios");
+                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
+                    
+                    //mostrar.forward(request, response);
+                    
+                  break;
               case "agregarLaboratorio":
                     edificio= Integer.parseInt(request.getParameter("sltEdificio"));
                     lb.setNombre(request.getParameter("txtNombre"));                    

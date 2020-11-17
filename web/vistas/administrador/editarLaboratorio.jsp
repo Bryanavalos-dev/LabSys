@@ -30,7 +30,7 @@
               
                        <option value='<%= per.getId() %>' <%= (lab.getEdificios()==per.getId())?" selected ":"" %> ><%= per.getNombre() %></option>
                  <% }else{%>
-                    <option value='<%= per.getId() %>'  ><%= per.getNombre() %> /// <%= lab.getEdificios() %> <%= per.getId() %> </option>
+                    <option value='<%= per.getId() %>'  ><%= per.getNombre() %> </option>
                  
                     <%}}%>//fin del while
                     
