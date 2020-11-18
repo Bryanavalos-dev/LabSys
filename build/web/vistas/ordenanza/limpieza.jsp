@@ -9,23 +9,16 @@
     <table id="limpieza" class="table table-hover">
         <thead>
             <tr>
-                <th>ID LIMPIEZA</th>
-                <th>USUARIO</th>
-                <th>ID HORARIO</th>
-                <th>L</th>
-                <th>M</th>
-                <th>M</th>
-                <th>J</th>
-                <th>V</th>
-                <th>S</th>
-                <th>D</th>
-                <th>FECHA INICIO</th>
-                <th>FECHA FIN</th>
-                <th>HORA INICIO</th>
-                <th>HORA FIN</th>
-                <th>PERIODO</th>
-                <th>LABORATORIO</th>
-                <th>ACCIONES</th>  
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Horario</th>
+                <th>Fecha inicio</th>
+                <th>Fecha final</th>
+                <th>Hora inicio</th>
+                <th>Hora fin</th>
+                <th>Periodo</th>
+                <th>Laboratorio</th>
+                <th>Acciones</th>  
             </tr>
         </thead>
         <%
@@ -40,14 +33,29 @@
             <tr>
                 <td><%= limp.getLimpiezaid()%></td>
                 <td><%= limp.getNombre()%></td>
-                <td><%= limp.getHorarioid()%></td>
-                <td><%= limp.getLunes()%></td>
-                <td><%= limp.getMartes()%></td>
-                <td><%= limp.getMiercoles()%></td>
-                <td><%= limp.getJueves()%></td>
-                <td><%= limp.getViernes()%></td>
-                <td><%= limp.getSabado()%></td>
-                <td><%= limp.getDomingo()%></td>
+                <td>
+                    <% if(limp.getLunes()==1){
+                       out.print("Lunes ");
+                }%>
+                <% if(limp.getMartes()==1){
+                       out.print("Martes ");
+                }%>
+                <% if(limp.getMiercoles()==1){
+                       out.print("Miercoles ");
+                }%>
+                <% if(limp.getJueves()==1){
+                       out.print("Jueves ");
+                }%>
+                <% if(limp.getViernes()==1){
+                       out.print("Viernes ");
+                }%>
+                <% if(limp.getSabado()==1){
+                       out.print("Sabado ");
+                }%>
+                <% if(limp.getDomingo()==1){
+                       out.print("Domingo ");
+                }%>
+                </td>
                 <td><%= limp.getFecha_inicio() %></td>
                 <td><%= limp.getFecha_final()%></td>
                 <td><%= limp.getHoraInicio() %></td>
