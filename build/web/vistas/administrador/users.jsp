@@ -42,7 +42,7 @@
                         
                         <td>
                             <%if(per.getIdrol()!= 1){%>
-                            <a href="admin?tipo=editarUsuario&id=<%= per.getUsuarioID()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="admin?tipo=modificarUsuario&id=<%= per.getUsuarioID()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
                             <a href="#"  class="btn btn-xs btn-danger pl-<%= per.getUsuarioID()%>" onclick="$('.pl-<%= per.getUsuarioID()%>').toggle()"><i class="fa fa-close"></i></a>
                             <a  style="display:none;" href="admin?tipo=eliminarUsuario&id=<%= per.getUsuarioID()%>"  class="btn btn-xs btn-danger pl-<%= per.getUsuarioID()%>" >Seguro?</a>
                             <%}else{%>
