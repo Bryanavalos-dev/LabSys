@@ -48,7 +48,7 @@ public class UsuariosDAO implements CRUD_Usuarios{
     }
  @Override
     public Usuarios list(int id){
-        String sql ="select usuarioId, u.nombre, telefono, correo, password, nacimiento, activo, idrol, r.nombre rol from usuarios u inner join roles r on  u.idRol = r.idroles where periodoid = " + id;
+        String sql ="select usuarioId, u.nombre, telefono, correo, password, nacimiento, activo, idrol, r.nombre rol from usuarios u inner join roles r on  u.idRol = r.idroles where usuarioid = " + id;
         try{
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
@@ -91,8 +91,8 @@ public class UsuariosDAO implements CRUD_Usuarios{
 
     @Override
     public boolean edit(Usuarios per) {
-    String sql ="update periodo set nombre="
-            + " where periodoid="+per.getUsuarioID();
+    String sql ="update usuarios set nombre='"+per.getNombre()+"',telefono='"+per.getTelefono()+"',correo='"+per.getCorreo()+"',"
+            + "nacimiento='"+per.getNacimiento()+"',idRol='"+per.getIdrol()+"',activo='"+per.getActivo()+"' where usuarioid="+per.getUsuarioID();
         try {
             con=cn.getConexion();
             ps=con.prepareStatement(sql);

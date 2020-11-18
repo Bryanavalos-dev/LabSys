@@ -89,7 +89,12 @@ public class admin extends HttpServlet {
                   case "agregarUsuarios":                    
                     mostrar = request.getRequestDispatcher("vistas/administrador/agregarUsuarios.jsp");
                     mostrar.forward(request, response);
-                  break;  
+                  break; 
+                  case "modificarUsuario":                    
+                    request.setAttribute("idper",request.getParameter("id"));
+                   mostrar = request.getRequestDispatcher("vistas/administrador/editarUsuario.jsp");
+                   mostrar.forward(request, response);
+                  break; 
              case "laboratorios":
                     mostrar = request.getRequestDispatcher("vistas/administrador/laboratorios.jsp");
                     mostrar.forward(request, response);
@@ -233,9 +238,8 @@ public class admin extends HttpServlet {
          Edificios ed = new Edificios();
          EdificiosDAO red = new EdificiosDAO();
           RolesDAO rd = new RolesDAO();
-           int id,edificio,rol,activo;
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
-            Date  fechaDate = null;
+           int id,edificio,rol,activo,role;
+            
             
            Estado es = new Estado();
           EstadoDAO eds = new EstadoDAO();
@@ -266,6 +270,30 @@ public class admin extends HttpServlet {
                     //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
                     
                     //mostrar.forward(request, response);
+                    
+                  break;
+                    case "modificarUsuario":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    usu = new Usuarios();
+                    id=Integer.parseInt(request.getParameter("txtId"));
+                    usu.setUsuarioID(id);
+                    rol= Integer.parseInt(request.getParameter("sltRol"));
+                  
+                    usu.setNombre(request.getParameter("txtNombre"));
+                    usu.setTelefono(request.getParameter("txtTelefono"));
+                    usu.setCorreo(request.getParameter("txtCorreo"));
+                    usu.setPassword(request.getParameter("txtPassword"));
+                    usu.setNacimiento(request.getParameter("txtNacimiento"));
+                    activo= Integer.parseInt(request.getParameter("txtActivo"));
+                    usu.setIdrol(rol);
+                    usu.setActivo(activo);
+                  
+                    
+                    response.sendRedirect("admin?tipo=usuarios");
+
+                    usud.edit(usu);                    
+                    
+                   
                     
                   break;
               case "agregarLaboratorio":
