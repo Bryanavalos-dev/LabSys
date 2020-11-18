@@ -42,9 +42,8 @@
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                       <ul class="nav navbar-nav">
-                        <li class="active"><a href="encargado">Inicio</a></li>
-                        <li class="active"><a href="encargado">Horarios</a></li>
-                        <li class="active"><a href="encargado">Limpieza</a></li>
+                        <li class="active"><a href="ordenanza">Inicio</a></li>
+                        <li class="active"><a href="ordenanza?tipo=limpieza">Limpieza</a></li>
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>
                     </div><!--/.nav-collapse -->
