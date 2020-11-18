@@ -5,7 +5,7 @@
 <%@page import="modelo.Horario"%>
 <div class="col">
 	<h1>Horarios</h1>
-          <a href="admin?tipo=agregarEdificios" class="btn btn-xs btn-success">Agregar nuevo</a>
+          <a href="encargado?tipo=agregarHorarios" class="btn btn-xs btn-success">Agregar nuevo</a>
 	<table id="horarios" class="table table-hover">
 		<thead>
                     <tr>
@@ -57,13 +57,14 @@
 		
 		<td><%= per.getHorainicio()%></td>	
                 <td><%= per.getHorafin()%></td>
-                <td><%= per.getCreado()%></td>	
+                <td><%= (per.getCreado()!=null)?per.getCreado():" Sin fecha " %></td>	
                 <td><%= per.getLaboratorio()%></td>	
                 <td><%= per.getPeriodo()%></td>	
                         <td>
-                            <a href="#" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-                             <a href="#"  class="btn btn-xs btn-danger " onclick=""><i class="fa fa-close"></i></a>
-                            <a  style="display:none;" href="#"  class="btn btn-xs btn-danger " >Seguro?</a>
+                          <a href="encargado?tipo=editarHorario&id=<%= per.getCodigo()%>"  class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                             <a href="#"  class="btn btn-xs btn-danger pl-<%= per.getCodigo()%>" onclick="$('.pl-<%= per.getCodigo()%>').toggle()"><i class="fa fa-close"></i></a>
+                            <a  style="display:none;" href="encargado?tipo=eliminarHorario&id=<%= per.getCodigo()%>"  class="btn btn-xs btn-danger pl-<%= per.getCodigo()%> " >Seguro?</a>
+                       
                         </td>
                     </tr>
                     <%}%>

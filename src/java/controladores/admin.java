@@ -82,6 +82,7 @@ public class admin extends HttpServlet {
         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
          
          switch(accion){
+              
               case "usuarios":
                     mostrar = request.getRequestDispatcher("vistas/administrador/users.jsp");
                     mostrar.forward(request, response);

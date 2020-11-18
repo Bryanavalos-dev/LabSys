@@ -23,6 +23,25 @@ public class Horario {
     String Horafin;
     String Periodo;
     String Creado;
+    int Idlab;
+    int Idper;
+
+    public int getIdper() {
+        return Idper;
+    }
+
+    public void setIdper(int Idperiodo) {
+        this.Idper = Idperiodo;
+    }
+    
+
+    public int getIdlab() {
+        return Idlab;
+    }
+
+    public void setIdlab(int Idlab) {
+        this.Idlab = Idlab;
+    }
 
     public int getCodigo() {
         return Codigo;
@@ -124,8 +143,8 @@ public class Horario {
         return Creado;
     }
 
-    public void setCreado(String Creado) {
-        this.Creado = Creado;
+    public void setCreado(String Creado) {       
+        this.Creado = Creado;        
     }
 
    

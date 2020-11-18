@@ -1,3 +1,6 @@
+
+
+
 <%@include file="header.jsp" %>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -17,7 +20,7 @@
                      UsuariosDAO dao = new UsuariosDAO();
                      int id=Integer.parseInt((String)request.getAttribute("idper"));
                      Usuarios usus=(Usuarios)dao.list(id);
-                                               
+                                 
                 %>      
           <h1>Modificar Usuario Del Registro : <%=usus.getUsuarioID()%></h1>
         <form action="admin?tipo=modificarUsuario" method="post">
@@ -26,7 +29,7 @@
                <input class="form-control" type="text" placeholder="Ingrese el telefono" name="txtTelefono" required="" value="<%=usus.getTelefono()%>"><br>    
                <input class="form-control" type="text" placeholder="Ingrese el correo" name="txtCorreo" required="" value="<%=usus.getCorreo()%>"><br> 
                <input class="form-control" type="text" placeholder="Ingrese la password" name="txtPassword" required="" value="<%=usus.getPassword()%>"><br> 
-              <input class="form-control" type="date" placeholder="Ingrese la Nacimiento" name="txtNacimiento" required="" value=""min="1000-01-01" max="2050-05-25" step="1" value="<%=usus.getNacimiento()%>"><br> 
+              <input class="form-control" type="date" placeholder="Ingrese la Nacimiento" name="txtNacimiento" required=""value="<%=(usus.getNacimiento())%>" min="1000-01-01" max="2050-05-25" step="1" ><br> 
             <select id="sltRol" class="form-control" style="margin-bottom: 20px; " name="sltRol">
                  <option value='' selected disable>Seleccione el rol</option>
                 <%   while (iterr.hasNext ()){

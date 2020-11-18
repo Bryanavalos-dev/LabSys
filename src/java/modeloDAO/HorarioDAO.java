@@ -31,16 +31,18 @@ public class HorarioDAO  implements CRUD_Horario{
     @Override
     public List listar() {
         ArrayList<Horario>list=new ArrayList<Horario>();
-        String sql="select idhorario, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, creado, l.nombre idlaboratorio, p.nombre periodo from horario h inner join laboratorios l on h.idlaboratorio = l.idlaboratorios inner join periodo p on h.periodo = p.periodoid order by idhorario";
+        String sql="select idhorario,idlaboratorio,periodo, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, creado, l.nombre laboratorio, p.nombre periodos from horario h inner join laboratorios l on h.idlaboratorio = l.idlaboratorios inner join periodo p on h.periodo = p.periodoid order by idhorario";
         try{
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
                 Horario per=new Horario();
-             
+              per.setIdlab(rs.getInt("idlaboratorio"));
+              per.setIdper(rs.getInt("periodo"));
                per.setCodigo(rs.getInt("idhorario"));
-               per.setLaboratorio(rs.getString("idlaboratorio"));
+               per.setCodigo(rs.getInt("idhorario"));
+               per.setLaboratorio(rs.getString("laboratorio"));
                per.setLunes(rs.getInt("lunes"));
                per.setMartes(rs.getInt("martes")); 
                per.setMiercoles(rs.getInt("miercoles"));
@@ -50,8 +52,14 @@ public class HorarioDAO  implements CRUD_Horario{
                per.setDomingo(rs.getInt("domingo"));;
                per.setHorainicio(rs.getString("hora_inicio"));
                per.setHorafin(rs.getString("hora_fin"));
-               per.setPeriodo(rs.getString("periodo"));
-               per.setCreado(rs.getString("creado"));
+               per.setPeriodo(rs.getString("periodos"));
+               String creadoDB = rs.getString("creado");
+               if(rs.getString("creado")!=null || rs.getString("creado")!="0000-00-00"){
+               per.setCreado((String)rs.getString("creado"));                   
+               }else{
+                   per.setCreado("Sin fecha");  
+               }
+
                
                list.add(per);
             }
@@ -63,14 +71,16 @@ public class HorarioDAO  implements CRUD_Horario{
    
     @Override
     public Horario list(int id) {
-        String sql ="select idhorario, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, creado, l.nombre idlaboratorio, p.nombre periodo from horario h inner join laboratorios l on h.idlaboratorio = l.idlaboratorios inner join periodo p on h.periodo = p.periodoid  where idhorario = " + id;
+        String sql ="select idhorario,idlaboratorio,periodo, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, creado, l.nombre laboratorio, p.nombre periodos from horario h inner join laboratorios l on h.idlaboratorio = l.idlaboratorios inner join periodo p on h.periodo = p.periodoid  where idhorario = " + id;
         try{
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
+               h.setIdlab(rs.getInt("idlaboratorio"));
+               h.setIdper(rs.getInt("periodo"));
                h.setCodigo(rs.getInt("idhorario"));
-               h.setLaboratorio(rs.getString("idlaboratorio"));
+               h.setLaboratorio(rs.getString("laboratorio"));
                h.setLunes(rs.getInt("lunes"));
                h.setMartes(rs.getInt("martes")); 
                h.setMiercoles(rs.getInt("miercoles"));
@@ -80,7 +90,7 @@ public class HorarioDAO  implements CRUD_Horario{
                h.setDomingo(rs.getInt("domingo"));;
                h.setHorainicio(rs.getString("hora_inicio"));
                h.setHorafin(rs.getString("hora_fin"));
-               h.setPeriodo(rs.getString("periodo"));
+               h.setPeriodo(rs.getString("periodos"));
                h.setCreado(rs.getString("creado"));
             }
         } catch (Exception e){
@@ -91,15 +101,16 @@ public class HorarioDAO  implements CRUD_Horario{
 
     @Override
     public boolean add(Horario per) {
-        String sql ="insert into horario (idlaboratorio,lunes,martes,miercoles,jueves,viernes,sabado,domingo,hora_inicio,hora_fin,periodo,creado) values ('"+per.getLaboratorio()+"','"+per.getLunes()+"',"
+        String sql ="insert into horario (idlaboratorio,lunes,martes,miercoles,jueves,viernes,sabado,domingo,hora_inicio,hora_fin,periodo,creado) values ('"+per.getIdlab()+"','"+per.getLunes()+"',"
                 + " '"+per.getMartes()+"','"+per.getMiercoles()+"','"+per.getJueves()+"','"+per.getViernes()+"','"+per.getSabado()+"','"+per.getDomingo()+"','"+per.getHorainicio()+"','"+per.getHorafin()+"',"
-                + " '"+per.getPeriodo()+"','"+per.getCreado()+"',)";
+                + " '"+per.getIdper()+"','"+per.getCreado()+"')";
         try {
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
         }
         catch (Exception e){
+               System.err.println("Error"+e);
         }
         
         return false;   
@@ -107,16 +118,17 @@ public class HorarioDAO  implements CRUD_Horario{
 
     @Override
     public boolean edit(Horario per) {
-    String sql ="update periodo set idlaboratorio='"+per.getLaboratorio()+"',lunes='"+per.getLunes()+"',martes='"+per.getMartes()+"',"
+    String sql ="update horario set idlaboratorio='"+per.getIdlab()+"',lunes='"+per.getLunes()+"',martes='"+per.getMartes()+"',"
             + "miercoles='"+per.getMiercoles()+"',jueves='"+per.getJueves()+"',viernes='"+per.getViernes()+"',"
             + "sabado='"+per.getSabado()+"',domingo='"+per.getDomingo()+"',hora_inicio='"+per.getHorainicio()+"',hora_fin='"+per.getHorafin()+"',"
-            + "periodo='"+per.getPeriodo()+"',creado='"+per.getCreado()+"' where idhorario="+per.getCodigo();
+            + "periodo='"+per.getIdper()+"',creado='"+per.getCreado()+"' where idhorario="+per.getCodigo();
         try {
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
         }
         catch (Exception e){
+             System.err.println("Error"+e);
                 }
         return false;
     }

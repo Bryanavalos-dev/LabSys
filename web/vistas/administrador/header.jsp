@@ -10,9 +10,6 @@
     
     if((long)u.getIdrol()!=1){ 
     String url = request.getRequestURL().toString().substring(0, request.getRequestURL().toString().length() - request.getRequestURI().length()) + request.getContextPath() + "/"+"index.jsp";
-                // RequestDispatcher mostrar = request.getRequestDispatcher(url);
-                 //request.setAttribute("mensaje", "inicie sesion");
-                 //mostrar.forward(request, response);
                  response.sendRedirect(request.getRequestURL().toString().substring(0, request.getRequestURL().toString().length() - request.getRequestURI().length()) + request.getContextPath() + "/"+"index.jsp?mensaje=inicie sesion para continuar");
                  out.print("No tiene acceso");
                  return;                
@@ -49,6 +46,7 @@
                           <li class="active"><a href="admin?tipo=periodos">Periodos</a></li>
                           <li class="active"><a href="admin?tipo=laboratorios">Laboratorios</a></li>
                           <li class="active"><a href="admin?tipo=usuarios">Usuarios</a></li>
+                   
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>
                     </div><!--/.nav-collapse -->
