@@ -2,7 +2,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="Config.Conexion"%>
+<%@page import="conn.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,23 +13,9 @@
     <body>
         <div>
             <h1>Agregar Limpieza</h1>
-            <form action="Controlador">
+            <form action="ordenanza?tipo=agregarLimpieza">
                 Horario:<br>
                 <select>
-                    <% 
-                    Conexion cn = new Conexion();
-                    Connection con;
-                    PreparedStatement ps;
-                    ResultSet rs;
-                    String sql = "Select ";
-                    try {
-                        con = cn.getConnection();
-                        ps = con.prepareStatement(sql);
-                        rs = ps.executeQuery();
-                        } catch (Exception e) {
-                        }
-                    
-                    %>
                 </select>
                 <input type="text" name="txtHorarioId"><br>
                 Usuario:<br>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Limpieza;
+import modeloDAO.LimpiezaDAO;
 
 /**
  *
@@ -22,6 +24,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ordenanza", urlPatterns = {"/ordenanza"})
 public class ordenanza extends HttpServlet {
 
+    String listar="vistas/ordenanza/limpieza.jsp";
+    String add="vistas/ordenanza/agregarLimpieza.jsp";
+    String edit="vistas/ordenanza/editarLimpieza.jsp";
+    Limpieza l = new Limpieza();
+    LimpiezaDAO lDAO = new LimpiezaDAO();
+    int id;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -67,15 +76,24 @@ public class ordenanza extends HttpServlet {
         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
         
         switch(accion){
-               case "limpieza":
-                    mostrar = request.getRequestDispatcher("vistas/ordenanza/limpieza.jsp");
-                    mostrar.forward(request, response);
-                 break;
-                 default:
+            case "limpieza":
+                mostrar = request.getRequestDispatcher("vistas/ordenanza/limpieza.jsp");
+                mostrar.forward(request, response);
+                break;
+            case "agregarLimpieza":
+                mostrar = request.getRequestDispatcher("vistas/ordenanza/agregarLimpieza.jsp");
+                mostrar.forward(request, response);
+                break;
+            case "editarLimpieza":
+                mostrar = request.getRequestDispatcher("vistas/ordenanza/editarLimpieza.jsp");
+                mostrar.forward(request, response);
+                break;
+                default:
                     mostrar = request.getRequestDispatcher("vistas/ordenanza/ordenanza.jsp");
                     mostrar.forward(request, response);
-                 break;
+                break;
         }
+        
     }
 
     /**
@@ -92,11 +110,6 @@ public class ordenanza extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

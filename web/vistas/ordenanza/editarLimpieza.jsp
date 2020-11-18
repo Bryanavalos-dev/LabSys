@@ -4,8 +4,8 @@
     Author     : George
 --%>
 
-<%@page import="Modelo.Limpieza"%>
-<%@page import="ModeloDAO.LimpiezaDAO"%>
+<%@page import="modelo.Limpieza"%>
+<%@page import="modeloDAO.LimpiezaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
