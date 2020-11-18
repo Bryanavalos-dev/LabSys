@@ -18,9 +18,9 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/controldelimpiezav2"  ,"root","");            
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/controldelimpiezav2","root","");            
         } catch (Exception e) {
-            System.err.println("Error en la conexions: " + e.getMessage());
+            System.err.println("Error en la conexion: " + e.getMessage());
         }
     }
     
