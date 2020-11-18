@@ -1,14 +1,14 @@
 <%-- 
-    Document   : header
-    Created on : nov 16, 2020, 7:08:14 p.m.
-    Author     : bryan
---%>
-  <%@ include file="../verificaSesion.jsp" %>
+    Document   : admin
+    Created on : 11-14-2020, 10:19:25 AM
+    Author     : gerson
+    --%>
+    <%@ include file="../verificaSesion.jsp" %>
     <%@page import="modelo.Usuarios"%>
     <%
     Usuarios u =  (Usuarios)session.getAttribute("usuario");
     
-    if((long)u.getIdrol()!= 3){ 
+    if((long)u.getIdrol()!=3){ 
     String url = request.getRequestURL().toString().substring(0, request.getRequestURL().toString().length() - request.getRequestURI().length()) + request.getContextPath() + "/"+"index.jsp";
                 // RequestDispatcher mostrar = request.getRequestDispatcher(url);
                  //request.setAttribute("mensaje", "inicie sesion");
@@ -38,15 +38,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#">SCL - Encargado</a>
+                      <a class="navbar-brand" href="#">SCL - Ordenanza</a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                       <ul class="nav navbar-nav">
-                        <li class="active"><a href="admin">Inicio</a></li>
-                        <li class="active"><a href="admin?tipo=roles">Roles</a></li>
-                         <li class="active"><a href="admin?tipo=edificios">Edificios</a></li>
-                         <li class="active"><a href="admin?tipo=estados">Estados</a></li>
-                          <li class="active"><a href="admin?tipo=periodos">Periodos</a></li>
+                        <li class="active"><a href="ordenanza">Inicio</a></li>
+                        <li class="active"><a href="ordenanza?tipo=limpieza">Limpieza</a></li>
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>
                     </div><!--/.nav-collapse -->
