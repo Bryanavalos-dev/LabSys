@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Horario;
+import modelo.Limpieza;
 import modeloDAO.HorarioDAO;
+import modeloDAO.LimpiezaDAO;
 
 /**
  *
@@ -59,6 +61,23 @@ public class encargado extends HttpServlet {
                     mostrar = request.getRequestDispatcher("vistas/encargado/horarios.jsp");
                     mostrar.forward(request, response);
                  break;
+                    case "limpieza":
+                    mostrar = request.getRequestDispatcher("vistas/encargado/asglimpieza.jsp");
+                    mostrar.forward(request, response);
+                 break;
+                     case "agregarLimpieza":
+                    mostrar = request.getRequestDispatcher("vistas/encargado/agregarLimpieza.jsp");
+                    mostrar.forward(request, response);
+                 break;
+                  case "eliminarLimpieza":
+                   request.setAttribute("idper",request.getParameter("id"));
+                    LimpiezaDAO el = new LimpiezaDAO();
+                    int idel=Integer.parseInt(request.getParameter("id"));
+                    el.eliminar(idel);
+                    
+                     response.sendRedirect("encargado?tipo=limpieza");
+                 break;
+
                     case "agregarHorarios":
                     mostrar = request.getRequestDispatcher("vistas/encargado/agregarHorarios.jsp");
                     mostrar.forward(request, response);
@@ -100,11 +119,36 @@ public class encargado extends HttpServlet {
            HttpSession session= request.getSession(true);
         RequestDispatcher mostrar;
         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
-        int lab, periodo,id;
+        int lab, periodo,id,horario,user,state;
         String l,m,mi,j,v,s,d;
         Horario h = new Horario();
         HorarioDAO hd = new HorarioDAO();
+        
+        Limpieza li = new Limpieza();
+        LimpiezaDAO lid = new LimpiezaDAO();
         switch(accion){
+             case "asignarHorario":
+                    horario = Integer.parseInt(request.getParameter("sltHorario"));
+                   user = Integer.parseInt(request.getParameter("sltUsuario"));  
+                   state = Integer.parseInt(request.getParameter("sltEstado"));                    
+                    li.setIdhorario(horario);
+                    li.setFecha_inicio(request.getParameter("txtFechain"));
+                    li.setFecha_final(request.getParameter("txtFechafin"));
+                    h.setHorafin(request.getParameter("txtHorafin"));
+                   
+                   
+                    li.setUsuarioid(user);
+                    li.setEstado(state);
+                    
+                    lid.add(li);
+                    
+                    response.sendRedirect("encargado?tipo=limpieza");
+                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
+                    
+                    //mostrar.forward(request, response);
+                    
+                  break;
+
              case "agregarHorario":
                     lab = Integer.parseInt(request.getParameter("sltLab"));
                     periodo = Integer.parseInt(request.getParameter("sltPeriodo"));                    

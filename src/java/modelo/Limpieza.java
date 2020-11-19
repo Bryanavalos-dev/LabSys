@@ -2,7 +2,7 @@
 package modelo;
 
 public class Limpieza {
-    int limpiezaid, horarioid, usuarioid, estado;
+   int limpiezaid, horarioid, usuarioid, estado;
     String fecha_inicio;
     String fecha_final;
     private long idhorario;
@@ -26,6 +26,15 @@ public class Limpieza {
     private String nacimiento;
     private long idRol;
     private long activo;
+    String Estadoid;
+
+    public String getEstadoid() {
+        return Estadoid;
+    }
+
+    public void setEstadoid(String Estadoid) {
+        this.Estadoid = Estadoid;
+    }
 
     public long getIdhorario() {
         return idhorario;
@@ -253,3 +262,5 @@ public class Limpieza {
     
     
 }
+    
+

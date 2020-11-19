@@ -22,7 +22,7 @@ public class LimpiezaDAO implements CRUD_Limpieza{
     @Override
     public List listar() {
         ArrayList<Limpieza>list = new ArrayList<>();
-        String sql = "SELECT * FROM limpieza li INNER JOIN (SELECT idhorario, idlaboratorio, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, p.nombre periodo, l.nombre laboratorio FROM horario h INNER JOIN laboratorios l ON h.idlaboratorio = l.idlaboratorios INNER JOIN periodo p ON h.periodo = p.periodoid) h ON li.horarioid = h.idhorario INNER JOIN usuarios u ON li.usuarioid = u.usuarioId WHERE u.idRol = 3";
+        String sql = "SELECT *,es.nombre estados FROM limpieza li INNER JOIN (SELECT idhorario, idlaboratorio, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, p.nombre periodo, l.nombre laboratorio FROM horario h INNER JOIN laboratorios l ON h.idlaboratorio = l.idlaboratorios INNER JOIN periodo p ON h.periodo = p.periodoid) h ON li.horarioid = h.idhorario INNER JOIN usuarios u ON li.usuarioid = u.usuarioId inner join estado es on li.estado = es.estadoid order by limpiezaid";
         try{
             con = cn.getConexion();
             ps = con.prepareStatement(sql);
@@ -31,6 +31,8 @@ public class LimpiezaDAO implements CRUD_Limpieza{
                 Limpieza limp = new Limpieza();
                 limp.setLimpiezaid(rs.getInt("limpiezaid"));
                 limp.setHorarioid(rs.getInt("idhorario"));
+                limp.setEstado(rs.getInt("estado"));
+                limp.setEstadoid(rs.getString("estados"));
                 limp.setNombre(rs.getString("nombre"));
                 limp.setLunes(rs.getInt("lunes"));
                 limp.setMartes(rs.getInt("martes"));
@@ -77,13 +79,13 @@ public class LimpiezaDAO implements CRUD_Limpieza{
 
     @Override
     public boolean add(Limpieza limp) {
-        String sql = "insert into Limpieza (horarioid, usuarioid, fecha_inicio, fecha_final, estado) values ('"+limp.getHorarioid()+"','"+limp.getUsuarioid()+"','"+limp.getFecha_inicio()+"','"+limp.getFecha_final()+"','"+limp.getEstado()+"')";
+        String sql = "insert into Limpieza (horarioid, usuarioid, fecha_inicio, fecha_final, estado) values ('"+limp.getIdhorario()+"','"+limp.getUsuarioid()+"','"+limp.getFecha_inicio()+"','"+limp.getFecha_final()+"','"+limp.getEstado()+"')";
         try{
             con=cn.getConexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
         } catch(Exception e){
-            
+            System.err.println("Error"+e);
         }
         return false;
     }
@@ -101,13 +103,14 @@ public class LimpiezaDAO implements CRUD_Limpieza{
     }
 
     @Override
-    public boolean eliminar(int limpiezaid) {
-        String sql = "delete from limpieza where limpiezaid="+limpiezaid;
+    public boolean eliminar(int id) {
+        String sql = "delete from limpieza where limpiezaid="+id;
         try {
             con = cn.getConexion();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {
+             System.err.println("Error"+e);
         }
         return false;
     }

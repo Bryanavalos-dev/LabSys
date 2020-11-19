@@ -44,6 +44,7 @@
                       <ul class="nav navbar-nav">
                         <li class="active"><a href="encargado">Inicio</a></li>
                         <li class="active"><a href="encargado?tipo=horarios">Horarios</a></li>
+                           <li class="active"><a href="encargado?tipo=limpieza"> Horarios Asignados</a></li>
                          
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>

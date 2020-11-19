@@ -3,25 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/editarLaboratorio.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/header.jsp</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/editarUsuario.jsp</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/edificios.jsp</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/LaboratoriosDAO.java</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/laboratorios.jsp</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/interfaz/CRUD_Laboratorios.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/EstadoDAO.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/horarios.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/encargado.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/editarHorarios.jsp</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/admin.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/header.jsp</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Edificios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/UsuariosDAO.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/conn/Conexion.java</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/administrador/agregarUsuarios.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Horario.java</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Laboratorios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/interfaz/CRUD_Horario.java</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/HorarioDAO.java</file>
-=======
-            <file>file:/C:/Users/George/Documents/GitHub/LabSys/web/vistas/encargado/horarios.jsp</file>
-            <file>file:/C:/Users/George/Documents/GitHub/LabSys/web/vistas/ordenanza/limpieza.jsp</file>
-            <file>file:/C:/Users/George/Documents/GitHub/LabSys/web/vistas/ordenanza/editarLimpieza.jsp</file>
->>>>>>> 693fdcba98004b114c30ccec316c5daefb473f57
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/agregarHorarios.jsp</file>
         </group>
     </open-files>
 </project-private>
