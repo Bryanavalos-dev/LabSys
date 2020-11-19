@@ -31,6 +31,7 @@
             limp=iter.next();           
         %>
         <tbody>
+            
             <tr>
                 <td><%= limp.getLimpiezaid()%></td>
                 <td><%= limp.getNombre()%></td>
@@ -55,7 +56,8 @@
                 }%>
                 <% if(limp.getDomingo()==1){
                        out.print("Domingo ");
-                }%>
+                }
+                %>
                 </td>
                 <td><%= limp.getFecha_inicio() %></td>
                 <td><%= limp.getFecha_final()%></td>
@@ -65,7 +67,7 @@
                 <td><%= limp.getLaboratorio()%></td>
                 <td><%= limp.getEstadoid()%></td>
                 <td>
-                    <a href="ordenanza?tipo=editarLimpieza&limpiezaid=<%= limp.getLimpiezaid()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                    <a href="encargado?tipo=editarLimpieza&id=<%= limp.getLimpiezaid()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
                     <a href="#"  class="btn btn-xs btn-danger pl-<%= limp.getLimpiezaid()%>" onclick="$('.pl-<%= limp.getLimpiezaid()%>').toggle()"><i class="fa fa-close"></i></a>
                     <a style="display:none;" href="encargado?tipo=eliminarLimpieza&id=<%= limp.getLimpiezaid()%>"  class="btn btn-xs btn-danger pl-<%=limp.getLimpiezaid()%>" >Seguro?</a>
                 </td>

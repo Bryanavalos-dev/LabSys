@@ -69,6 +69,11 @@ public class encargado extends HttpServlet {
                     mostrar = request.getRequestDispatcher("vistas/encargado/agregarLimpieza.jsp");
                     mostrar.forward(request, response);
                  break;
+                  case "editarLimpieza":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    mostrar = request.getRequestDispatcher("vistas/encargado/editarLimpieza.jsp");
+                    mostrar.forward(request, response);
+                  break;
                   case "eliminarLimpieza":
                    request.setAttribute("idper",request.getParameter("id"));
                     LimpiezaDAO el = new LimpiezaDAO();
@@ -148,68 +153,7 @@ public class encargado extends HttpServlet {
                     //mostrar.forward(request, response);
                     
                   break;
-
-             case "agregarHorario":
-                    lab = Integer.parseInt(request.getParameter("sltLab"));
-                    periodo = Integer.parseInt(request.getParameter("sltPeriodo"));                    
-                    h.setIdlab(lab);
-                    h.setHorainicio(request.getParameter("txtHorainicio"));
-                    h.setHorafin(request.getParameter("txtHorafin"));
-                    l=request.getParameter("chkLunes");
-                    m=request.getParameter("chkMartes");
-                    mi=request.getParameter("chkMiercoles");
-                    j=request.getParameter("chkJueves");
-                    v=request.getParameter("chkViernes");
-                    s=request.getParameter("chkSabado");
-                    d=request.getParameter("chkDomingo");
-                    
-                    if(l != null){
-                        h.setLunes(1);
-                    }else{
-                        h.setLunes(0);
-                    }
-                    if(m != null){
-                        h.setMartes(1);
-                    }else{
-                        h.setMartes(0);
-                    }
-                    if(mi != null){
-                        h.setMiercoles(1);
-                    }else{
-                        h.setMiercoles(0);
-                    }
-                    if(j != null){
-                        h.setJueves(1);
-                    }else{
-                        h.setJueves(0);
-                    }
-                     if(v != null){
-                        h.setViernes(1);
-                    }else{
-                        h.setViernes(0);
-                    }
-                      if(s != null){
-                        h.setSabado(1);
-                    }else{
-                        h.setSabado(0);
-                    }
-                    if(d != null){
-                        h.setDomingo(1);
-                    }else{
-                        h.setDomingo(0);
-                    } 
-                    h.setIdper(periodo);
-                    h.setCreado(request.getParameter("txtFecha"));
-                    
-                    hd.add(h);
-                    
-                    response.sendRedirect("encargado?tipo=horarios");
-                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
-                    
-                    //mostrar.forward(request, response);
-                    
-                  break;
-                  case "modificarHorario":
+                   case "modificarHorario":
                     request.setAttribute("idper",request.getParameter("id"));
                     h = new Horario();
                     id=Integer.parseInt(request.getParameter("txtId"));
@@ -271,6 +215,91 @@ public class encargado extends HttpServlet {
                    
                     
                   break;
+             case "agregarHorario":
+                    lab = Integer.parseInt(request.getParameter("sltLab"));
+                    periodo = Integer.parseInt(request.getParameter("sltPeriodo"));                    
+                    h.setIdlab(lab);
+                    h.setHorainicio(request.getParameter("txtHorainicio"));
+                    h.setHorafin(request.getParameter("txtHorafin"));
+                    l=request.getParameter("chkLunes");
+                    m=request.getParameter("chkMartes");
+                    mi=request.getParameter("chkMiercoles");
+                    j=request.getParameter("chkJueves");
+                    v=request.getParameter("chkViernes");
+                    s=request.getParameter("chkSabado");
+                    d=request.getParameter("chkDomingo");
+                    
+                    if(l != null){
+                        h.setLunes(1);
+                    }else{
+                        h.setLunes(0);
+                    }
+                    if(m != null){
+                        h.setMartes(1);
+                    }else{
+                        h.setMartes(0);
+                    }
+                    if(mi != null){
+                        h.setMiercoles(1);
+                    }else{
+                        h.setMiercoles(0);
+                    }
+                    if(j != null){
+                        h.setJueves(1);
+                    }else{
+                        h.setJueves(0);
+                    }
+                     if(v != null){
+                        h.setViernes(1);
+                    }else{
+                        h.setViernes(0);
+                    }
+                      if(s != null){
+                        h.setSabado(1);
+                    }else{
+                        h.setSabado(0);
+                    }
+                    if(d != null){
+                        h.setDomingo(1);
+                    }else{
+                        h.setDomingo(0);
+                    } 
+                    h.setIdper(periodo);
+                    h.setCreado(request.getParameter("txtFecha"));
+                    
+                    hd.add(h);
+                    
+                    response.sendRedirect("encargado?tipo=horarios");
+                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
+                    
+                    //mostrar.forward(request, response);
+                    
+                  break;
+                    case "modificarLimpieza":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    li = new Limpieza();
+                    id=Integer.parseInt(request.getParameter("txtId"));
+                    li.setLimpiezaid(id);
+                    horario = Integer.parseInt(request.getParameter("sltHorario"));
+                   user = Integer.parseInt(request.getParameter("sltUsuario"));  
+                   state = Integer.parseInt(request.getParameter("sltEstado"));                    
+                    li.setIdhorario(horario);
+                    li.setFecha_inicio(request.getParameter("txtFechain"));
+                    li.setFecha_final(request.getParameter("txtFechafin"));
+                    h.setHorafin(request.getParameter("txtHorafin"));
+                   
+                   
+                    li.setUsuarioid(user);
+                    li.setEstado(state);
+
+                    
+                    lid.edit(li) ;                 
+                    
+                    response.sendRedirect("encargado?tipo=limpieza");
+                   
+                    
+                  break;
+                 
                            
              default:
                     mostrar = request.getRequestDispatcher("vistas/encargado/encargado.jsp");
