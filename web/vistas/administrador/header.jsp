@@ -46,6 +46,7 @@
                           <li class="active"><a href="admin?tipo=periodos">Periodos</a></li>
                           <li class="active"><a href="admin?tipo=laboratorios">Laboratorios</a></li>
                           <li class="active"><a href="admin?tipo=usuarios">Usuarios</a></li>
+                          <li class="active"><a href="admin?tipo=asignaciones">Asignaciones</a></li>
                    
                         <li><a href="cerrrar.jsp">Salir</a></li>
                       </ul>

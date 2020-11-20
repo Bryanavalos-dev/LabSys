@@ -1,0 +1,170 @@
+
+
+CREATE DATABASE marcacion
+go
+
+use marcacion
+go
+
+create table Departamentos(
+idDep int PRIMARY KEY IDENTITY(1,1) NOT NULL,
+departamento varchar(150) NOT NULL 
+);
+go 
+
+insert into Departamentos(departamento) Values('Finanzas');
+insert into Departamentos(departamento) Values('RRHH');
+insert into Departamentos(departamento) Values('Contabilidad');
+insert into Departamentos(departamento) Values('Planillas');
+insert into Departamentos(departamento) Values('Ventas');
+insert into Departamentos(departamento) Values('Informatica');
+insert into Departamentos(departamento) Values('Otros');
+
+
+CREATE table Empleados(
+ idEmp  int PRIMARY KEY IDENTITY(1,1) NOT NULL,
+nombre varchar(255) NOT NULL,
+telefono varchar(20) NOT NULL,
+idDep int not null,
+foreign key (idDep) REFERENCES Departamentos(idDep)
+);
+go
+
+insert into Empleados(nombre,telefono,idDep) Values('Juan Perez','1221312-12312',1);
+insert into Empleados(nombre,telefono,idDep) Values('Juanito Peraza','1221312-12312',2);
+insert into Empleados(nombre,telefono,idDep) Values('Jonh Pez','1221312-12312',3);
+insert into Empleados(nombre,telefono,idDep) Values('Jan Pritz','1221312-12312',3);
+insert into Empleados(nombre,telefono,idDep) Values('Jun Pry','1221312-12312',4);
+
+
+CREATE table marca(
+ idMar  int PRIMARY KEY IDENTITY(1,1) NOT NULL,
+ idEmp  int not null,
+ tipoMarcacion varchar(15) NOT NULL,
+ fecha datetime,
+ foreign key (idEmp) REFERENCES Empleados(idEmp)
+);
+go
+
+
+create trigger colocaFechaMarca
+ON  marca  
+AFTER INSERT, UPDATE 
+AS  
+BEGIN 
+SET NOCOUNT ON;
+    UPDATE marca
+    SET fecha = GETDATE() 
+     WHERE EXISTS (SELECT 1 FROM inserted WHERE idMar = marca.idMar);
+END  
+go
+
+
+
+CREATE PROCEDURE SP_ingresarEmpleado
+	@nombre nvarchar(150),
+	@telefono nvarchar(20),
+	@idDep int,
+	@id int output
+AS
+BEGIN
+
+	insert into Empleados(nombre, telefono, idDep) 
+	values(@nombre, @telefono,@idDep)
+	set @id = (select @@Identity)
+	return @id
+END
+go
+
+
+
+CREATE PROCEDURE SP_marcaEntrada
+	@idEmp nvarchar(50),
+	@id int output
+AS
+BEGIN
+
+	insert into marca(idEmp,tipoMarcacion) 
+	values(@idEmp,'ENTRADA')
+
+	set @id = (select @@Identity)
+	return @id
+END
+go
+
+
+CREATE PROCEDURE SP_marcaSalida
+	@idEmp nvarchar(50),
+	@id int output
+AS
+BEGIN
+
+	insert into marca(idEmp,tipoMarcacion) 
+	values(@idEmp,'SALIDA')
+
+	set @id = (select @@Identity)
+	return @id
+END
+
+go 
+
+
+CREATE PROCEDURE SP_marcasEmpleado
+@idEmp nvarchar(50)
+AS
+select m.idMar, m.idEmp, e.nombre, m.tipoMarcacion, m.fecha, d.departamento   
+from marca as m 
+inner join Empleados as e on m.idEmp = e.idEmp 
+inner join Departamentos as d 
+on e.idDep = d.idDep
+where e.idEmp = @idEmp
+go
+
+
+CREATE PROCEDURE SP_empleados
+AS
+select e.idEmp, e.nombre, e.telefono, d.departamento from Empleados as e inner join Departamentos as d
+on e.idDep = d.idDep
+go
+
+CREATE PROCEDURE SP_departamentos
+AS
+select * from departamentos
+go
+
+
+
+
+CREATE PROCEDURE SP_existeEntrada
+	@idEmp nvarchar(50),
+	@id int output
+AS
+BEGIN
+	set @id = (select isnull(max(idmar),0) idMar from marca where cast(fecha as date) = CAST(GETDATE() as date) 
+and idEmp=@idEmp
+and tipoMarcacion = 'ENTRADA' )
+	return @id
+END
+go 
+
+
+CREATE PROCEDURE SP_existeSalida
+	@idEmp nvarchar(50),
+	@id int output
+AS
+BEGIN
+	set @id = (select isnull(max(idmar),0) idMar from marca where cast(fecha as date) = CAST(GETDATE() as date) 
+and idEmp=@idEmp
+and tipoMarcacion = 'SALIDA' )
+	return @id
+END
+go 
+
+
+CREATE PROCEDURE SP_updateMarca
+@idMar nvarchar(50)
+AS
+UPDATE marca
+    SET fecha = GETDATE() 
+     WHERE idMar = @idMar;
+go

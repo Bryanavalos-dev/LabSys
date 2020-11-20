@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-20-2020 06:59:27 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.entidad.Usuario" table="usuario" catalog="alquilerbicicletas" optimistic-lock="version">
+        <id name="idusuario" type="java.lang.Integer">
+            <column name="idusuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="sucursal" class="modelo.entidad.Sucursal" fetch="select">
+            <column name="idsucursal" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="15" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="45" />
+        </property>
+        <property name="nombreCompleto" type="string">
+            <column name="nombre_completo" length="100" />
+        </property>
+        <property name="activo" type="java.lang.Boolean">
+            <column name="activo" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="19" />
+        </property>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" />
+            </key>
+            <one-to-many class="modelo.entidad.Cliente" />
+        </set>
+        <set name="alquilers" table="alquiler" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" />
+            </key>
+            <one-to-many class="modelo.entidad.Alquiler" />
+        </set>
+    </class>
+</hibernate-mapping>
