@@ -9,6 +9,7 @@ public interface CRUD_Limpieza {
     public Limpieza list(int limpiezaid);
     public boolean add(Limpieza limp);
     public boolean edit(Limpieza limp);
+    public boolean edita(Limpieza limp);
     public boolean eliminar(int limpiezaid);
         
     

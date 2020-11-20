@@ -85,9 +85,9 @@ public class ordenanza extends HttpServlet {
                 mostrar.forward(request, response);
                 break;
             case "editarLimpieza":
-                mostrar = request.getRequestDispatcher("vistas/ordenanza/editarLimpieza.jsp");
-                mostrar.forward(request, response);
-                break;
+                    request.setAttribute("idper",request.getParameter("id"));
+                    mostrar = request.getRequestDispatcher("vistas/ordenanza/editarLimpieza.jsp");
+                    mostrar.forward(request, response);
                 default:
                     mostrar = request.getRequestDispatcher("vistas/ordenanza/ordenanza.jsp");
                     mostrar.forward(request, response);
@@ -108,6 +108,41 @@ public class ordenanza extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+         HttpSession session= request.getSession(true);
+        RequestDispatcher mostrar;
+         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
+        int lab, periodo,id,horario,user,state;
+        
+          Limpieza li = new Limpieza();
+        LimpiezaDAO lid = new LimpiezaDAO();
+         switch(accion){
+         case "modificarLimpieza":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    li = new Limpieza();
+                    id=Integer.parseInt(request.getParameter("txtId"));
+                    li.setLimpiezaid(id);
+                    
+                   state = Integer.parseInt(request.getParameter("sltEstado"));                    
+                    li.setEstado(state);
+                    
+                   
+                   
+                  
+               
+                    
+                    lid.edita(li) ;                 
+                    
+                    response.sendRedirect("ordenanza?tipo=limpieza");
+                   
+                    
+                  break;
+                                       
+             default:
+                    mostrar = request.getRequestDispatcher("vistas/ordenanza/ordenanza.jsp");
+                    mostrar.forward(request, response);
+                 break;
+    }
+        
     }
 
     @Override

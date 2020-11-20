@@ -6,7 +6,7 @@
 	<title>Sistema de Control de limpieza.</title>
 	<%@include file="bs.jsp"  %>
 </head>
-<body style="background-image: url('https://lh3.googleusercontent.com/proxy/HXLm0JVtoFN_GzXJxK2Csey41sR-ZfqUxpxlQPuZcJS2QzrdkI6zzS7VzDMzaALSxgzSZ-9mZKi4ZPQPuZYV8Otni0iatO7kmYqg9PNHEL4u72KXTA'); background-size: cover">
+<body style="background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.uc.edu.mx%2Flaboratorios-de-computo%2F&psig=AOvVaw3r_-kBVdyolMBhu5OElIvE&ust=1605967276996000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJi29rykke0CFQAAAAAdAAAAABAD'); background-size: cover">
 	<form action="controlador" method="post" accept-charset="utf-8" clas="form" style="width: 50%; margin:  0 auto;">
 		<table class="table" style='background-color: white; opacity: 0.9; margin-top: 50px;'>
 			<tr>

@@ -1,41 +1,40 @@
-<%-- 
-    Document   : Editar
-    Created on : 11-13-2020, 05:14:32 PM
-    Author     : George
---%>
+<%@include file="header.jsp" %>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="modelo.Estado"%>
+<%@page import="java.util.List"%>
+<%@page import="modeloDAO.EstadoDAO"%>
 <%@page import="modelo.Limpieza"%>
 <%@page import="modeloDAO.LimpiezaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div>
+<div class="col">
             <%
               LimpiezaDAO dao = new LimpiezaDAO();
-              int id = Integer.parseInt((String)request.getAttribute("idlimp"));
+             int id=Integer.parseInt((String)request.getAttribute("idper"));
+
               Limpieza l = (Limpieza)dao.list(id);
+              
+                    EstadoDAO daoes = new EstadoDAO();
+                    List<Estado> listes=daoes.listar();
+                    Iterator<Estado>iteres = listes.iterator();
+                    Estado peres=null;
             %>
-            <h1>Editar Limpieza</h1>
-            <form action="Controlador">
-                Horario:<br>
-                <input type="text" name="txtHorarioId" value="<%= l.getHorarioid() %>"><br>
-                Usuario:<br>
-                <input type="text" name="txtUsuarioId" value="<%= l.getUsuarioid() %>"><br>
-                Fecha inicial:<br>
-                <input type="text" id="datepicker" name="txtFechaIni" value="<%= l.getFecha_inicio() %>"><br>
-                Fecha Final:<br>
-                <input type="text" name="txtFechaFin" value="<%= l.getFecha_final() %>"><br>
-                Estado:<br>
-                <input type="text" name="txtEstado" value="<%= l.getEstado() %>"><br><br>
-                <input type="hidden" name="txtId" value="<%= l.getLimpiezaid() %>">
-                <input type="submit" name="accion" value="Actualizar"><br><br>
-                <a href="Controlador?accion=listar">Regresar</a>
-            </form>
+               <h1>Modificar Estado de la limpieza : <%= l.getLimpiezaid()%></h1>
+        <form action="ordenanza?tipo=modificarLimpieza" method="post">
+                        <select id="sltEdificios" class="form-control" style="margin-bottom: 20px; " name="sltEstado">
+                 <option value='' selected disable>Seleccione el estado</option>
+                <%  while (iteres.hasNext ()){
+                        peres=iteres.next();
+                        if(l.getLimpiezaid() == peres.getId()){
+                %>
+                <option value='<%= peres.getId() %>'<%= (l.getLimpiezaid()==peres.getId())?" selected ":"" %> ><%= peres.getNom() %></option>
+                <%}else{%>
+                <option value='<%= peres.getId() %>'><%= peres.getNom() %></option>
+                <% }}%>//fin del while
+                    
+                 
+                 <input class="form-control" type="hidden" name="txtId" value="<%= l.getLimpiezaid()%>"><br>
+            <input class="btn btn-success" type="submit" name="accion" value="actualizarLimpieza"><br>
+        </form>          
         </div>
-    </body>
-</html>
+ <%@include file="footer.jsp" %>

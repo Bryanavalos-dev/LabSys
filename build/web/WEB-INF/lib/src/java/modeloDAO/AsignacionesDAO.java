@@ -101,6 +101,7 @@ public class AsignacionesDAO {
             ps.executeUpdate();
         }
         catch (Exception e){
+              System.err.println("Error"+e);
                 }
         return false;
     }

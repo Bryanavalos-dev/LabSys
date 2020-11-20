@@ -3,24 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/asglimpieza.jsp</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/encargado.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/editarLimpieza.jsp</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/interfaz/CRUD_Limpieza.java</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Limpieza.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Usuarios.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/admin.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/index.jsp</file>
             <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/LimpiezaDAO.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modelo/Horario.java</file>
-            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/web/vistas/encargado/agregarLimpieza.jsp</file>
-=======
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/web/vistas/administrador/admin.jsp</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/src/java/controladores/controlador.java</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/web/vistas/encargado/encargado.jsp</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/src/java/controladores/encargado.java</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/web/index.jsp</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/web/vistas/encargado/header.jsp</file>
-            <file>file:/C:/Users/gerson/Documents/NetBeansProjects/LabSys/src/java/controladores/admin.java</file>
->>>>>>> 3cf50c95bbdfbc1c38ea1d0dac9ad4e479c753ac
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/controladores/ordenanza.java</file>
+            <file>file:/C:/Users/bryan/Documents/NetBeansProjects/LabSys/src/java/modeloDAO/HorarioDAO.java</file>
         </group>
     </open-files>
 </project-private>

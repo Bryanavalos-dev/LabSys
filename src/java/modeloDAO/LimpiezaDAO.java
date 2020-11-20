@@ -22,7 +22,7 @@ public class LimpiezaDAO implements CRUD_Limpieza{
     @Override
     public List listar() {
         ArrayList<Limpieza>list = new ArrayList<>();
-        String sql = "SELECT *,es.nombre estados FROM limpieza li INNER JOIN (SELECT idhorario, idlaboratorio, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, p.nombre periodo, l.nombre laboratorio FROM horario h INNER JOIN laboratorios l ON h.idlaboratorio = l.idlaboratorios INNER JOIN periodo p ON h.periodo = p.periodoid) h ON li.horarioid = h.idhorario INNER JOIN usuarios u ON li.usuarioid = u.usuarioId inner join estado es on li.estado = es.estadoid order by limpiezaid";
+        String sql = "SELECT *,es.nombre estados FROM limpieza li INNER JOIN (SELECT idhorario, idlaboratorio, lunes, martes, miercoles, jueves, viernes, sabado, domingo, hora_inicio, hora_fin, p.nombre periodo, l.nombre laboratorio FROM horario h INNER JOIN laboratorios l ON h.idlaboratorio = l.idlaboratorios INNER JOIN periodo p ON h.periodo = p.periodoid) h ON li.horarioid = h.idhorario INNER JOIN usuarios u ON li.usuarioid = u.usuarioId inner join estado es on li.estado = es.estadoid";
         try{
             con = cn.getConexion();
             ps = con.prepareStatement(sql);
@@ -30,7 +30,8 @@ public class LimpiezaDAO implements CRUD_Limpieza{
             while(rs.next()){
                 Limpieza limp = new Limpieza();
                 limp.setLimpiezaid(rs.getInt("limpiezaid"));
-                l.setIdhorario(rs.getInt("idhorario"));
+                limp.setIdhorario(rs.getInt("idhorario"));
+                limp.setUsuarioid(rs.getInt("usuarioId"));
                 limp.setHorarioid(rs.getInt("idhorario"));
                 limp.setEstado(rs.getInt("estado"));
                 limp.setEstadoid(rs.getString("estados"));
@@ -112,6 +113,19 @@ public class LimpiezaDAO implements CRUD_Limpieza{
     @Override
     public boolean edit(Limpieza limp) {
         String sql = "update Limpieza set horarioid = '"+limp.getIdhorario()+"', usuarioid = '"+limp.getUsuarioid()+"', fecha_inicio = '"+limp.getFecha_inicio()+"', fecha_final = '"+limp.getFecha_final()+"', estado = '"+limp.getEstado()+"' where limpiezaid="+limp.getLimpiezaid();
+        try {
+            con = cn.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+              System.err.println("Error"+e);
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean edita(Limpieza limp) {
+        String sql = "update Limpieza set  estado = '"+limp.getEstado()+"' where limpiezaid="+limp.getLimpiezaid();
         try {
             con = cn.getConexion();
             ps = con.prepareStatement(sql);

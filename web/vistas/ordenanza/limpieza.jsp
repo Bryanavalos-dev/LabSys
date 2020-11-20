@@ -5,19 +5,19 @@
 <%@page import="modeloDAO.LimpiezaDAO"%>
 <div class="col">
     <h1>Limpieza</h1>
-    <a href="ordenanza?tipo=agregarLimpieza" class="btn btn-xs btn-success">Agregar nuevo</a><br><br>
+    
     <table id="limpieza" class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Usuario</th>
+                <th>ID</th>
+                <th>Laboratorio</th>
                 <th>Horario</th>
                 <th>Fecha inicio</th>
                 <th>Fecha final</th>
                 <th>Hora inicio</th>
                 <th>Hora fin</th>
                 <th>Periodo</th>
-                <th>Laboratorio</th>
+                <th>Estado</th>
                 <th>Acciones</th>  
             </tr>
         </thead>
@@ -27,12 +27,16 @@
             Iterator<Limpieza>iter = list.iterator();
             Limpieza limp = null;
             while(iter.hasNext()){
-            limp=iter.next();           
+            limp=iter.next(); 
+            
+             if((long)u.getUsuarioID()== limp.getUsuarioid()){ 
+           
         %>
         <tbody>
             <tr>
+               
                 <td><%= limp.getLimpiezaid()%></td>
-                <td><%= limp.getNombre()%></td>
+                <td><%= limp.getLaboratorio()%></td>
                 <td>
                     <% if(limp.getLunes()==1){
                        out.print("Lunes ");
@@ -61,18 +65,18 @@
                 <td><%= limp.getHoraInicio() %></td>
                 <td><%= limp.getHoraFin()%></td>
                 <td><%= limp.getPerdiodo()%></td>
-                <td><%= limp.getLaboratorio()%></td>
+                <td><%= limp.getEstadoid() %></td>
                 <td>
-                    <a href="ordenanza?tipo=editarLimpieza&limpiezaid=<%= limp.getLimpiezaid()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-                    <a href="#"  class="btn btn-xs btn-danger pl-<%= limp.getLimpiezaid()%>" onclick="$('.pl-<%= limp.getLimpiezaid()%>').toggle()"><i class="fa fa-close"></i></a>
-                    <a style="display:none;" href="Controlador?accion=eliminar&limpiezaid=<%= limp.getLimpiezaid()%>"  class="btn btn-xs btn-danger pl-<%=limp.getLimpiezaid()%>" >Seguro?</a>
+                    <a href="ordenanza?tipo=editarLimpieza&id=<%= limp.getLimpiezaid()%>" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                  
                 </td>
             </tr>
-        <%}%>
+        <%}}%>
         </tbody>
     </table>
+</div>
 <script>
-    $('#edificios').DataTable({language:{
+    $('#limpieza').DataTable({language:{
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
     "sZeroRecords":    "No se encontraron resultados",
@@ -103,7 +107,5 @@
     "info": true
   });
 </script>
-
-        </div>
-    </body>
-</html>
+ <%@include file="footer.jsp" %>
+      

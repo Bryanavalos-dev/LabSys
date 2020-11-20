@@ -29,6 +29,8 @@ import modelo.Usuarios;
 import modeloDAO.UsuariosDAO;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import modelo.Asignaciones;
+import modeloDAO.AsignacionesDAO;
 
 /**
  *
@@ -82,7 +84,28 @@ public class admin extends HttpServlet {
         String accion = (request.getParameter("tipo")!=null)?request.getParameter("tipo"):"";
          
          switch(accion){
-              
+              case "asignaciones":
+                    mostrar = request.getRequestDispatcher("vistas/administrador/asignaciones.jsp");
+                    mostrar.forward(request, response);
+                 break;
+                 case "eliminarAsignacion":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    AsignacionesDAO asid = new AsignacionesDAO();
+                    int idea=Integer.parseInt(request.getParameter("id"));
+                    asid.eliminar(idea);
+                    
+                     response.sendRedirect("admin?tipo=asignaciones");
+                  break;
+                   case "modificarAsignacion":                    
+                    request.setAttribute("idper",request.getParameter("id"));
+                   mostrar = request.getRequestDispatcher("vistas/administrador/editarAsignaciones.jsp");
+                   mostrar.forward(request, response);
+                  break; 
+               case "agregarAsignaciones":
+                    mostrar = request.getRequestDispatcher("vistas/administrador/agregarAsignaciones.jsp");
+                    mostrar.forward(request, response);
+                 break;
+
               case "usuarios":
                     mostrar = request.getRequestDispatcher("vistas/administrador/users.jsp");
                     mostrar.forward(request, response);
@@ -239,7 +262,7 @@ public class admin extends HttpServlet {
          Edificios ed = new Edificios();
          EdificiosDAO red = new EdificiosDAO();
           RolesDAO rd = new RolesDAO();
-           int id,edificio,rol,activo,role;
+           int id,edificio,rol,activo,role,lab,usuario;
             
             
            Estado es = new Estado();
@@ -253,7 +276,47 @@ public class admin extends HttpServlet {
           
           Usuarios usu = new Usuarios();
           UsuariosDAO usud=  new UsuariosDAO();
+          
+          Asignaciones asi = new Asignaciones();
+          AsignacionesDAO asid=  new AsignacionesDAO();
+          
          switch(accion){
+             case "agregarAsignacion":
+                    lab= Integer.parseInt(request.getParameter("sltLab"));
+                    usuario= Integer.parseInt(request.getParameter("sltUser"));
+                  
+                    asi.setLaboratorioid(lab);
+                    asi.setUsuarioid(usuario);
+                   asid.add(asi);
+                   
+                    
+                    
+                    response.sendRedirect("admin?tipo=asignaciones");
+                    //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
+                    
+                    //mostrar.forward(request, response);
+                    
+                  break;
+                  
+                     case "modificarAsignacion":
+                    request.setAttribute("idper",request.getParameter("id"));
+                    asi = new Asignaciones();
+                    id=Integer.parseInt(request.getParameter("txtId"));
+                    asi.setAsignacionid(id);
+                      lab= Integer.parseInt(request.getParameter("sltLab"));
+                    usuario= Integer.parseInt(request.getParameter("sltUser"));
+                  
+                    asi.setLaboratorioid(lab);
+                    asi.setUsuarioid(usuario);
+                   asid.edit(asi);
+                   
+                    
+                    
+                    response.sendRedirect("admin?tipo=asignaciones");               
+                    
+                   
+                    
+                  break;
              case "agregarUsuario":
                     rol= Integer.parseInt(request.getParameter("sltRol"));
                   
@@ -266,6 +329,8 @@ public class admin extends HttpServlet {
                     usu.setIdrol(rol);
                     usu.setActivo(activo);
                    usud.add(usu);
+                   
+                    
                     
                     response.sendRedirect("admin?tipo=usuarios");
                     //mostrar = request.getRequestDispatcher("vistas/administrador/editarRoles.jsp");
